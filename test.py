@@ -73,3 +73,7 @@ for i in range(len(Normal)-2*(temp-1)+1,len(Normal)):
 print('L_E',L_E)
 print(L_M) 
 print(L_L)
+y=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+for i in range(0,len(L_E)):
+    y[L_E[i]]=1
+print(y)

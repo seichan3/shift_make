@@ -12,6 +12,7 @@ for i in range(0,3):
 lst_2.append(0)
 lst=lst_1+lst_2
 shift=np.zeros((9,11))
+print('lst',lst)
 print('シフトパターンを入力してください。ただし早番を1、遅番を2、東部を3、来ない時0とする。')
 #  ハマノ　ニシイ　ヤナギダ　ツガワ　ツボ　５　コバヤシ　トリヤ　ミヤハラ　オチアイ　クマイ　１０　コイズミ　シマダ　イノウエ　サトウ　クボタ　１５
 #  証明、証明、届け出、届け出、入力、入力、収納、収納、コンシェルジュ、昼休憩
@@ -23,8 +24,7 @@ H_N=0
 for i in range(0,15):
     if (abc[i]==1) or (abc[i]==2):
         H_N+=1
-print('今日休憩するべき人数')
-print('Here_Mum',H_N)
+print('今日休憩するべき人数',H_N)
 #  契約社員、社員で早く、遅く入っている人を把握、ランダム化
 Early_Normal=[]
 Lately_Normal=[]
@@ -64,11 +64,17 @@ for i in range(0,len(Emproyee)-2):
     L_L.append(Emproyee[2+i])
 for i in range(len(Normal)-2*(temp-1)+1,len(Normal)):
     L_L.append(Normal[i])
-'''
-print('L_E',L_E)
-print('L_M',L_M)
-print('L_L',L_L)
-'''
+
+for i in range(0,len(L_E)):
+    CAN_IN[L_E[i],:,4]=0
+for i in range(0,len(L_M)):
+    CAN_IN[L_M[i],:,5]=0
+for i in range(0,len(L_L)):
+    CAN_IN[L_E[i],:,6]=0
+
+print('L_E',L_E,'L_M',L_M,'L_L',L_L)
+
+
 
 print('コンジェルジュABCDの順に数字にて入力してください、また、濱田さんが居れば1そうでなければ0を入力してください')
 A,B,C,D,H=input().split()
@@ -82,11 +88,10 @@ for i in range(0,15):
         x[0,i,2:11]=1
     elif I==3:
         x[0,i,7:11]=1 
-print(x)
+#  print('x',x)
 #  np.savetxt('c:/Users/m_tsugawa/Documents/Python_Scripts/np_savetxt.txt', x)
 for i in range(0,15):
-    CAN_IN[i,:9,0:11]=x[0,i,0:11]
-    CAN_IN[i,9,4:7]=1
+    CAN_IN[i,0:9,0:11]=x[0,i,0:11]
 #  print(CAN_IN)
 
 #  臨時職員はコンシェルジュに入れない
@@ -126,7 +131,30 @@ for i in range(0,9):
             I=int(shift[i,j])
             CAN_IN[I,:,j]=0
 
-print('shift',shift)
+
+
+#  仕事の代入優先順位を決定(Priority)
+P_W=[0,1,2,3,4,5,6,7]
+for j in [0,1,2,3]:
+    random.shuffle(P_W)
+    print('j',j)
+    for i in range(0,8):
+        for k in range(0,15):
+            if CAN_IN[lst[k],P_W[i],j]==1:
+                print('task1',lst[k],P_W[i],j)
+                shift[P_W[i],j]=lst[k]
+                CAN_IN[lst[k],:,j]=0
+                if (j!=0)and((P_W[i]==0)or(P_W[i]==1))and((shift[0,j-1]==shift[P_W[i],j]) or (shift[1,j-1]==shift[P_W[i],j])):
+                    CAN_IN[lst[k],0,j+1]=0
+                    CAN_IN[lst[k],1,j+1]=0
+                if (j!=0)and((P_W[i]==2)or(P_W[i]==3))and((shift[2,j-1]==shift[P_W[i],j]) or (shift[3,j-1]==shift[P_W[i],j])):
+                    CAN_IN[lst[k],2,j+1]=0
+                    CAN_IN[lst[k],3,j+1]=0
+                break
+
+print('shift')
+print(shift)                
+
 
 
 
