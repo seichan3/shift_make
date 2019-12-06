@@ -1,7 +1,7 @@
 
 import numpy as np
 import random
-
+'''
 x = np.zeros((1,15,11))
 CAN_IN=np.zeros((15,9,11))
 count_inoue,count_sato=0,0
@@ -77,3 +77,7 @@ y=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 for i in range(0,len(L_E)):
     y[L_E[i]]=1
 print(y)
+'''
+xx=np.zeros((5,5))
+xx[2,3]='テスト'
+print(xx)
