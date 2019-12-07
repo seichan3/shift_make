@@ -78,6 +78,11 @@ for i in range(0,len(L_E)):
     y[L_E[i]]=1
 print(y)
 '''
-xx=np.zeros((5,5))
-xx[2,3]='テスト'
+xx=np.zeros((5,5), dtype='<U5')
+for i in range(0,3):
+    for j in range(0,4):
+        if (i==2)and(j==1):
+            xx[i,j]='test'
+
 print(xx)
+print('tesjdkcs　　　え')

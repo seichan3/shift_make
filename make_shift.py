@@ -222,40 +222,42 @@ for j in [7,8,9,10]:
 
 
 print('shift')
-print(shift)                
-'''
+print(shift)     
+
+S_N=np.zeros((9,11), dtype='<U5')           
 for i in range(0,9):
     for j in range(0,11):
         if shift[i,j]==0:
-            S_N[i,j]=='ハマノ'
+            S_N[i,j]='未代入　　'
         if shift[i,j]==1:
-            S_N[i,j]=='ニシイ'
+            S_N[i,j]='ニシイ　　'
         if shift[i,j]==2:
-            S_N[i,j]=='ヤナギダ'
+            S_N[i,j]='ヤナギダ　'
         if shift[i,j]==3:
-            S_N[i,j]=='ツガワ'
+            S_N[i,j]='ツガワ　　'
         if shift[i,j]==4:
-            S_N[i,j]=='ツボ'
+            S_N[i,j]='ツボ　　　'
         if shift[i,j]==5:
-            S_N[i,j]=='コバヤシ'
+            S_N[i,j]='コバヤシ　'
         if shift[i,j]==6:
-            S_N[i,j]=='トリヤ'
+            S_N[i,j]='トリヤ　　'
         if shift[i,j]==7:
-            S_N[i,j]=='ミヤハラ'
+            S_N[i,j]='ミヤハラ　'
         if shift[i,j]==8:
-            S_N[i,j]=='オチアイ'
+            S_N[i,j]='オチアイ　'
         if shift[i,j]==9:
-            S_N[i,j]=='クマイ'
+            S_N[i,j]='クマイ　　'
         if shift[i,j]==10:
-            S_N[i,j]=='コイズミ'
+            S_N[i,j]='コイズミ　'
         if shift[i,j]==11:
-            S_N[i,j]=='シマダ'
+            S_N[i,j]='シマダ　　'
         if shift[i,j]==12:
-            S_N[i,j]=='イノウエ'
+            S_N[i,j]='イノウエ　'
         if shift[i,j]==13:
-            S_N[i,j]=='サトウ'
+            S_N[i,j]='サトウ　　'
         if shift[i,j]==14:
-            S_N[i,j]=='クボタ'
+            S_N[i,j]='クボタ　　'
 print('S_N')
 print(S_N)
-'''
+
+np.savetxt('c:/Users/m_tsugawa/Documents/Github/S_N.csv', S_N,fmt='%s',delimiter=',')
